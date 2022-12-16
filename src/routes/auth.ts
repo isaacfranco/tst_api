@@ -13,7 +13,7 @@ r.post('/signup', async (req, res) => {
 
   const existingUser = await prisma.user.findFirst({ where: { email } })
 
-  console.log('existingUser', existingUser)
+  //console.log('existingUser', existingUser)
   if (existingUser !== null) {
     return res.status(422).json({
       msg: 'E-mail já existe'
@@ -38,7 +38,7 @@ r.post('/signin', async (req, res) => {
 
   const existingUser = await prisma.user.findFirst({ where: { email } })
 
-  console.log('existingUser', existingUser)
+  //console.log('existingUser', existingUser)
   if (existingUser !== null) {
 
     const val = await bcrypt.compare(password, existingUser.password)
