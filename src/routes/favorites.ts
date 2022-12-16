@@ -34,9 +34,9 @@ r.post('/', [authRequired],  async (req: Request, res: Response) => {
   res.status(200).json({ msg: 'Filme adicionado na sua lista'})
 })
 
-r.delete('/', [authRequired],  async (req: Request, res: Response) => {
+r.delete('/:imdbID', [authRequired],  async (req: Request, res: Response) => {
   const user = res.locals.user
-  const { imdbID } = req.body
+  const { imdbID } = req.params
   const r = await prisma.favorite.deleteMany({ where: { userId: user.id, imdbID: imdbID }})
   if (r.count === 0)  return res.status(401).json({ msg: 'Filme não existe na sua lista'});
   return res.status(200).json({
