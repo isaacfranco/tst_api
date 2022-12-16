@@ -28,8 +28,6 @@ r.post('/signup', async (req, res) => {
     name: true, email: true
   }})
 
-  console.log('user', user)
-
   return res.status(200).json({ user })
 })
 
